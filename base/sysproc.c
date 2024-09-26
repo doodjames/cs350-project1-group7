@@ -94,7 +94,9 @@ void
 sys_shutdown2(void){
 	//argstring, cprintf msg, then run shutdown
 	char* string;
-	argstr(0, &string);
+	if(argstr(0, &string) < 0){
+		return -1;
+	}
 	cprintf("%s\n",string);
 	outw(0xB004, 0x0|0x2000);
 	outw(0x604, 0x0|0x2000);
